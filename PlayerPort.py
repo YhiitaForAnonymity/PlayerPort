@@ -104,8 +104,8 @@ print(Fore.MAGENTA + """
 »»»»»»»»»»»»»»»»»» Website »»»»»»»»»»»»»»»»»»
 """)
 url = input("»»»      Website/Ip: ")
-ip_address = url
 ip_adress = url
+ip_address = socket.gethostbyname(url)
 response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
 
 location_data = {
@@ -133,6 +133,5 @@ print ("»»»»»»»»»»»»»»»»»» Services »»»»»»»»»»»»»
 print ("»    Complete  [1]" + "  Scan the most common ports" + "\n")
 print ("»    Gaming    [2]" + "  Scan the most gaming ports" + "\n")
 print ("»    Server    [3]" + "  Scan the most server ports" +"\n")
-ip_address = socket.gethostbyname(url)
 
 loop()
