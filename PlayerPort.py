@@ -44,7 +44,8 @@ def complete():
     with open(url + ".txt", "w") as file:
         file.write("Service: Complete " + "\n")
         file.write("IP: " + ip_address + "\n")
-        file.write("Location: " + str(location_data) + "\n")
+        for key, value in location_data.items():
+            file.write(key + ": " + str(value) + "\n")
         file.write("Open Ports:" + "\n")
         file.write(results + "\n")
 
@@ -64,7 +65,8 @@ def gaming():
     with open(url + ".txt", "w") as file:
         file.write("Service: Gaming " + "\n")
         file.write("IP: " + ip_address + "\n")
-        file.write("Location: " + str(location_data) + "\n")
+        for key, value in location_data.items():
+            file.write(key + ": " + str(value) + "\n")
         file.write("Open Ports:" + "\n")
         file.write(results + "\n")
 
@@ -84,7 +86,8 @@ def server():
     with open(url + ".txt", "w") as file:
         file.write("Service: Server " + "\n")
         file.write("IP: " + ip_address + "\n")
-        file.write("Location: " + str(location_data) + "\n")
+        for key, value in location_data.items():
+            file.write(key + ": " + str(value) + "\n")
         file.write("Open Ports:" + "\n")
         file.write(results + "\n")
 
@@ -102,29 +105,19 @@ print(Fore.MAGENTA + """
 """)
 url = input("»»»      Website/Ip: ")
 ip_address = url
+ip_adress = url
 response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
-              
-location_data = {
-"Ip Address" : ip_address, 
-"city" : response.get("city"),
-"region" : response.get("region"),
-"country" : response.get("country_name"),
-"Ip Address Type" : response.get("version"),
-"Region Code" : response.get("region_code"), 
-"Postal Code" : response.get("postal"), 
-"Latitude" : response.get(str("latitude")), 
-"Longitude" : response.get(str("longitude")), 
-"TimeZone" : response.get("timezone"), 
-"Country code" : response.get("country_calling_code"), 
-"Currency" : response.get("currency"), 
-"Currency Name" : response.get("currency_name") , 
-"Languages" : response.get("languages"), 
-"Country Area" : response.get("country_area"), 
-"Population" : response.get("country_population"),
-"ASN" : response.get("asn"), 
-"Organization" : response.get("org")
 
+location_data = {
+    "City": response.get("city"),
+    "Region": response.get("region"),
+    "Country": response.get("country_name"),
+    "Provider": response.get("org"),
+    "Currency": response.get("timezone"), 
+    "Phonenumber": response.get("country_calling_code"), 
+    "Timezone": response.get("timezone"), 
 }
+
 latitude = response.get("latitude")
 global lat
 lat = str(latitude)
